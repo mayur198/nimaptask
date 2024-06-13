@@ -1,0 +1,37 @@
+<div class="profilepage">
+
+    <h2>Profile</h2>
+
+
+    <div class="profile" *ngIf="empoyeeData">
+
+
+        <div class="imgpart">
+            <div class="imgs">
+                <img [src]="profileimg">
+                <div class="buttons">
+                    <button type="button" class="btn btn-warning" style="height: 40px;font-size: 10px; ">Edit
+                        Photo</button>
+                    <button type="button" class="btn btn-warning" (click)="editProfile(empoyeeData.id)"
+                        style="height: 40px;font-size: 10px; margin-left: 5px;">Edit
+                        Profile</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="contentpart">
+            <div class="contents">
+                <p>I'm {{empoyeeData.firstname}} {{empoyeeData.lastname}} and Im above {{empoyeeData.age}} years </p>
+                <p> and you can send your emails to {{empoyeeData.email}}. </p>
+                <p>I live in the state of {{empoyeeData.state}}. I like to {{empoyeeData.tags}} and</p>
+                <p> please send me newsletters. Please reach out to</p>
+                <p> me on my phone number is {{empoyeeData.mobile }}.
+                </p>
+            </div>
+            <div class="buttons">
+                <button type="button" class="btn btn-success">I Agree</button>
+            </div>
+
+        </div>
+    </div>
+</div>

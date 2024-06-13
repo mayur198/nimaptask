@@ -1,0 +1,48 @@
+{
+  "resister": [
+    {
+      "id": "7ec5",
+      "firstname": "Mayur",
+      "lastname": "Kulabkar",
+      "email": "",
+      "mobile": "0914643345",
+      "age": 27,
+      "state": "Maharashtra",
+      "country": "india",
+      "address": "",
+      "tags": [
+        "bat",
+        "ball"
+      ]
+    },
+    {
+      "firstname": "Mayur",
+      "lastname": "Kulabkar",
+      "email": "mayurkulabkar98@gmail.com",
+      "mobile": "0914643345",
+      "age": 29,
+      "state": "Maharashtra",
+      "country": "india",
+      "address": "",
+      "tags": [
+        "po"
+      ],
+      "id": "f137"
+    },
+    {
+      "firstname": "Manish",
+      "lastname": "Kulabkar",
+      "email": "manishkulabkar121@gmail.com",
+      "mobile": "7066156549",
+      "age": 23,
+      "state": "Maharashtra",
+      "country": "india",
+      "address": "",
+      "tags": [
+        "Editing",
+        "cricket"
+      ],
+      "id": "1dc1"
+    }
+  ]
+}
