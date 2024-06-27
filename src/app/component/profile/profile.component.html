@@ -10,9 +10,11 @@
             <div class="imgs">
                 <img [src]="profileimg">
                 <div class="buttons">
-                    <button type="button" class="btn btn-warning" style="height: 40px;font-size: 10px; ">Edit
-                        Photo</button>
-                    <button type="button" class="btn btn-warning" (click)="editProfile(empoyeeData.id)"
+                    <!-- <button type="button" class="btn btn-warning" style="height: 40px;font-size: 10px; " (change)="onSelectFile($event)">Edit
+                        Photo</button> -->
+                        <input type="file"  id= "img" style="display: none;" (change)="onSelectFile($event)" >
+                        <label for="img"> Edit Photo</label>
+                        <button type="button" class="btn btn-warning" (click)="editProfile(empoyeeData.id)"
                         style="height: 40px;font-size: 10px; margin-left: 5px;">Edit
                         Profile</button>
                 </div>

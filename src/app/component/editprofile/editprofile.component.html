@@ -9,7 +9,7 @@
             </header>
         </mat-dialog-content>
     </div>
-    <div class="main">
+    <div class="main"> 
    
         <div class="b">
             <form [formGroup]="editForm">
@@ -138,7 +138,7 @@
 
                     <div class="form-group input_box col-12">
                         <mat-form-field class="input_box col-12" placeholder="Address" appearance="outline"
-                            formControlName="address">
+                            >
                             <mat-label>Address</mat-label>
                             <select matNativeControl>
                                 <optgroup label="Home">
@@ -151,11 +151,48 @@
                                 </optgroup>
                             </select>
                         </mat-form-field>
-                        <div class="form-text text-danger"
-                            *ngIf="address.errors?.['required'] && (address.touched || address.dirty)">
-                            Address is Required
-                        </div>
+                      
                     </div>
+
+                        <div class="form-group input_box col-12">
+                        <mat-form-field class="input_box col-12" placeholder="Address" appearance="outline" >
+                            <mat-label>Address</mat-label>
+                            <select matNativeControl (change)="onAddressChange($event)">
+                              
+                                <optgroup label="Home">
+                                    <option value="home">Home</option>
+                                </optgroup>
+                                <optgroup label="Company">
+                                    <option value="company">Company</option>
+                                </optgroup>
+                            </select>
+                        </mat-form-field>
+                    </div>
+                    
+                    
+                    <div *ngIf="selectedAddress === 'home'">
+                        <mat-form-field class="input_box col-12">
+                            <mat-label>Address 1</mat-label>
+                            <input matInput formControlName="homeAddress1">
+                        </mat-form-field>
+                        <mat-form-field class="input_box col-12">
+                            <mat-label>Address 2</mat-label>
+                            <input matInput formControlName="homeAddress2">
+                        </mat-form-field>
+                    </div>
+                    
+                   
+                    <div *ngIf="selectedAddress === 'company'">
+                        <mat-form-field class="input_box col-12">
+                            <mat-label>Company Address 1</mat-label>
+                            <input matInput formControlName="companyAddress1">
+                        </mat-form-field>
+                        <mat-form-field class="input_box col-12">
+                            <mat-label>Company Address 2</mat-label>
+                            <input matInput formControlName="companyAddress2">
+                        </mat-form-field>
+                    </div>
+                    
                     <!-- <div class="form-group input_box col-12"> -->
                         <mat-form-field class="example-chip-list">
                             <mat-chip-list #chipList formControlName="tags">

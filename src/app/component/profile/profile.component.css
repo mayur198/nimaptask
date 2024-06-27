@@ -30,10 +30,23 @@
     display: flex;
 }
 
+.profile .imgpart .buttons label {
+    height: 40px;
+    width: 75px;
+    font-size: 10px;
+
+    background-color: #ffcc00;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .profile .imgpart img {
     height: 170px;
     width: 150px;
-   
+
 
 }
 
@@ -69,15 +82,17 @@
     .profilepage h2 {
         position: relative;
         top: 0;
-        left: -42px;;
+        left: -42px;
+        ;
     }
 
     .profile .imgpart {
-      
+
         position: relative;
         right: 86px;
     }
-    .profile .contentpart{
+
+    .profile .contentpart {
         margin-left: -170px;
         margin-right: -190px;
     }

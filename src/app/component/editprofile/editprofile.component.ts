@@ -23,7 +23,8 @@ export class EditprofileComponent implements OnInit {
   empoyeeid: any;
 
   user: User = {
-    address: '',
+    // address: '',
+    imageUrl: '',
     age: 0,
     country: '',
     email: '',
@@ -36,6 +37,7 @@ export class EditprofileComponent implements OnInit {
   }
   employeeId: any;
   employee: any;
+  selectedAddress: string = '';
   constructor(private router: Router,
     private dialogRef: MatDialogRef<EditprofileComponent>,
     private fb: FormBuilder,
@@ -62,7 +64,11 @@ export class EditprofileComponent implements OnInit {
       age: [this.user.age, [Validators.required, Validators.minLength(20), Validators.maxLength(60)]],
       state: [this.user.state, [Validators.required]],
       country: [this.user.country, [Validators.required]],
-      address: [this.user.address, [Validators.required]],
+      // address: [this.user.address, [Validators.required]],
+      homeAddress1: [''],
+      homeAddress2: [''],
+      companyAddress1: [''],
+      companyAddress2: [''],
       tags: [this.user.tags]
     })
   }
@@ -170,6 +176,10 @@ export class EditprofileComponent implements OnInit {
 
     // }
   }
+  onAddressChange(event: Event): void {
 
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedAddress = selectElement.value;
+  }
 
 }

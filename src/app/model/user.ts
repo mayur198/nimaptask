@@ -1,6 +1,5 @@
 export interface User {
     id: any;
-    address: string;
     age : number;
     country: string;
     email: string;
@@ -8,7 +7,7 @@ export interface User {
     lastname: string;
     mobile: number;
     state: string;
-    tags: string[]
+    tags: string[];
+    imageUrl: string;
 }
 
-// console.log("interfacce",user)

@@ -14,10 +14,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  srcc: string = '../assets/profileavtar..jpg' 
+  srcc: string = '../assets/profileavtar..jpg'
 
   user: User = {
-    address: '',
+    //  image: '',
     age: 0,
     country: '',
     email: '',
@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
     mobile: 0,
     state: '',
     tags: [],
+    imageUrl: '',
     id: undefined
   }
   // console.log("interfacce",userform)
@@ -35,7 +36,9 @@ export class RegisterComponent implements OnInit {
   getNextId: any;
   response: any;
   empoyeeid: any;
-
+  selectedAddress: string = '';
+  imageUrl: string | ArrayBuffer | null = null;
+  selectedFile: any;
 
   constructor(private router: Router,
     private dialogRef: MatDialogRef<RegisterComponent>,
@@ -53,8 +56,13 @@ export class RegisterComponent implements OnInit {
       age: [this.user.age, [Validators.required, Validators.minLength(20), Validators.maxLength(60)]],
       state: [this.user.state, [Validators.required]],
       country: [this.user.country, [Validators.required]],
-      address: [this.user.address, [Validators.required]],
-      tags: [this.user.tags]
+      // address: [this.user.address, [Validators.required]],
+      homeAddress1: [''],
+      homeAddress2: [''],
+      companyAddress1: [''],
+      companyAddress2: [''],
+      tags: [this.user.tags],
+      imageUrl: ['']
     })
   }
 
@@ -105,7 +113,7 @@ export class RegisterComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    // Add tag
+
     if ((value || '').trim()) {
       const tags = this.registerForm.get('tags') as FormControl;
       const tagArray = tags.value;
@@ -113,7 +121,6 @@ export class RegisterComponent implements OnInit {
       tags.setValue(tagArray);
     }
 
-    // Reset the input value
     if (input) {
       input.value = '';
     }
@@ -130,12 +137,41 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+
+  // onSelectFile(event: any): void {
+  //   if (event.target.files && event.target.files[0]) {
+  //     const file = event.target.files[0];
+  //     const reader = new FileReader();
+  //     reader.onload = (e: any) => {
+  //       this.imageUrl = e.target.result;
+  //       this.srcc = e.target.result;
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
+  onSelectFile(event: any): void {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageUrl = e.target.result;
+        this.srcc = e.target.result;
+        this.registerForm.patchValue({
+          imageUrl: this.imageUrl
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   RESubmit(data: any) {
 
     this.dialogRef.close();
 
     const formData = this.registerForm.value as User
-    // console.log("const formData", formData)
+    console.log("const formData", formData)
+    
+    
     this.userservice.registerUser(formData).subscribe(
 
       (res: any) => {
@@ -152,7 +188,7 @@ export class RegisterComponent implements OnInit {
           // console.log("IN JUHFDWAIS")
           this.router.navigate(['/profile', this.empoyeeid]);
         } else {
-          console.error('Invalid user ID:',this.empoyeeid);
+          console.error('Invalid user ID:', this.empoyeeid);
 
         }
       },
@@ -164,6 +200,42 @@ export class RegisterComponent implements OnInit {
     );
 
   }
+  // RESubmit(data: any): void {
+  //   if (!this.selectedFile) {
+  //     // Handle error: no file selected
+  //     return;
+  //   }
+
+  //   const formData = new FormData();
+  //   formData.append('firstname', this.registerForm.get('firstname')?.value);
+  //   formData.append('lastname', this.registerForm.get('lastname')?.value);
+  //   formData.append('email', this.registerForm.get('email')?.value);
+  //   formData.append('mobile', this.registerForm.get('mobile')?.value);
+  //   formData.append('age', this.registerForm.get('age')?.value);
+  //   formData.append('state', this.registerForm.get('state')?.value);
+  //   formData.append('country', this.registerForm.get('country')?.value);
+  //   formData.append('tags', JSON.stringify(this.registerForm.get('tags')?.value));
+  //   formData.append('image', this.selectedFile);
  
-}
+  //   console.log("formData",formData)
+  //   this.userservice.registerUser(formData).subscribe(
+  //     (res: any) => {
+  //       this.dialogRef.close();
+  //       this.router.navigate(['/profile', res.id]);
+  //     },
+  //     error => {
+  //       console.error('Error registering user:', error);
+  //     }
+  //   );
+  // }
+ 
+  onAddressChange(event: Event): void {
+
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedAddress = selectElement.value;
+
+  }
+  }
+
+
 

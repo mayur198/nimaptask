@@ -117,8 +117,16 @@ img {
     height: 150px;
 }
 
+
 .a {
+  
     padding: 30px;
+}
+.a label {
+  
+   position: relative;
+   left: 30px;
+   color: #1569b2;
 }
 
 .col-4 {
